@@ -55,5 +55,60 @@ public class NoticeController {
 		 mv.setViewName("common/result");
 		 return mv;
 	}
+	@GetMapping("noticeSelect")
+	public ModelAndView getOne(BoardDTO boardDTO) throws Exception{
+		 BoardDTO select = noticeService.getOne(boardDTO);
+		 ModelAndView mv = new ModelAndView();
+		 if(select!=null) {
+			 mv.addObject("select", select);
+			 mv.addObject("board", "notice");
+			 mv.setViewName("board/boardSelect");
+		 }else {
+			 mv.addObject("msg", "데이터가 없습니다");
+			 mv.addObject("path", "./noticeList");
+			 mv.setViewName("common/result");
+		 }
+		
+		 return mv;
+	}
 	
+	@GetMapping("noticeDelete")
+	public ModelAndView setDelete(BoardDTO boardDTO)throws Exception{
+		int result = noticeService.setDelete(boardDTO);
+		String message="Delete 실패";
+		if(result>0) {
+			message="Delete 성공";
+		}
+		 ModelAndView mv = new ModelAndView();
+		 String path="./noticeList";
+		 mv.addObject("msg", message);
+		 mv.addObject("path", path);
+		 mv.setViewName("common/result");
+		 return mv;
+		
+	}
+	@GetMapping("noticeUpdate")
+	public ModelAndView setUpdate(BoardDTO boardDTO) throws Exception{
+		 BoardDTO dto = noticeService.getOne(boardDTO);
+		 ModelAndView mv = new ModelAndView();
+		 mv.addObject("board", "notice");
+		 mv.addObject("dto", dto);
+		 mv.setViewName("board/boardUpdate");
+		 return mv;
+	}
+	
+	@PostMapping("noticeUpdate")
+	public ModelAndView setUpdatePost(BoardDTO boardDTO) throws Exception{
+		int result = noticeService.setUpdate(boardDTO);
+		String message="Update 실패";
+		if(result>0) {
+			message="Update 성공";
+		}
+		 ModelAndView mv = new ModelAndView();
+		 String path="./noticeList";
+		 mv.addObject("msg", message);
+		 mv.addObject("path", path);
+		 mv.setViewName("common/result");
+		 return mv;
+	}
 }

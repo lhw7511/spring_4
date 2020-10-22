@@ -22,14 +22,12 @@ public class QnaService implements BoardService{
 
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnaDAO.setDelete(boardDTO);
 	}
 
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnaDAO.setUpdate(boardDTO);
 	}
 
 	@Override
@@ -42,8 +40,13 @@ public class QnaService implements BoardService{
 
 	@Override
 	public BoardDTO getOne(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return qnaDAO.getOne(boardDTO);
+	}
+	
+	public int setReply(BoardDTO boardDTO)throws Exception{
+		int result=qnaDAO.setReplyUpdate(boardDTO);
+		result=qnaDAO.setReply(boardDTO);
+		return result;
 	}
 
 }

@@ -20,15 +20,13 @@ public class NoticeService implements BoardService{
 	}
 
 	@Override
-	public int setDelete(BoardDTO boardDTO) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int setDelete(BoardDTO boardDTO)  throws Exception{
+		return noticeDAO.setDelete(boardDTO);
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int setUpdate(BoardDTO boardDTO) throws Exception{
+		return noticeDAO.setUpdate(boardDTO);
 	}
 
 	@Override
@@ -40,9 +38,8 @@ public class NoticeService implements BoardService{
 	}
 
 	@Override
-	public BoardDTO getOne(BoardDTO boardDTO) {
-		// TODO Auto-generated method stub
-		return null;
+	public BoardDTO getOne(BoardDTO boardDTO) throws Exception{
+		return noticeDAO.getOne(boardDTO);
 	}
 
 }
