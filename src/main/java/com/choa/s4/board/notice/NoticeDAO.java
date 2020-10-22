@@ -15,11 +15,12 @@ public class NoticeDAO implements BoardDAO{
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private static final String NAMESPACE="com.choa.s4.board.notice.NoticeDAO.";
+	private  final String NAMESPACE="com.choa.s4.board.notice.NoticeDAO.";
+	
 	@Override
 	public int setInsert(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert(NAMESPACE+"setInsert", boardDTO);
+		
 	}
 
 	@Override
@@ -36,8 +37,8 @@ public class NoticeDAO implements BoardDAO{
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return  sqlSession.selectList(NAMESPACE+"getList", pager);
+		
 	}
 
 	@Override
@@ -48,8 +49,7 @@ public class NoticeDAO implements BoardDAO{
 
 	@Override
 	public long getCount(Pager pager) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		 return sqlSession.selectOne(NAMESPACE+"getCount", pager);
 	}
 
 }

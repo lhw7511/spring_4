@@ -5,7 +5,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     <mapper namespace="com.choa.s4.board.qna.QnaDAO">
-    	<select id="qnaList" resultType="QnaDTO" parameterType="com.choa.s4.util.Pager">
+    	<select id="getList" resultType="QnaDTO" parameterType="Pager">
 		select * from
 		(select rownum as R, N.* from 
 		(select * from qna where 
@@ -25,7 +25,7 @@
 	</select>
     
     
-    <select id="qnaCount" resultType="java.lang.Long" parameterType="com.choa.s4.util.Pager">
+    <select id="getCount" resultType="java.lang.Long" parameterType="Pager">
 		select count(num) from qna where
 		<choose>
 			<when test="kind =='con'">
@@ -43,19 +43,19 @@
 	</select>
     
     	
-	<select id="qnaSelect" parameterType="QnaDTO" resultType="QnaDTO">
+	<select id="getOne" parameterType="QnaDTO" resultType="QnaDTO">
 		select * from qna where num = #{num}
 	</select>
 	
-	<delete id="qnaDelete" parameterType="QnaDTO">
+	<delete id="setDelete" parameterType="QnaDTO">
 		delete from qna where num=#{num}
 	</delete>
 	
-	<update id="qnaUpdate" parameterType="QnaDTO">
+	<update id="setUpdate" parameterType="QnaDTO">
 		update qna set title=#{title},contents=#{contents} where num=#{num}
 	</update>
 	
-	<insert id="qnaWrite" parameterType="QnaDTO">
+	<insert id="setInsert" parameterType="QnaDTO">
 		insert into qna values(qna_seq.nextval,#{title},#{writer},#{contents},sysdate,0,qna_seq.currval,0,0)
 	</insert>
 	
