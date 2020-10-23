@@ -1,4 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 
 <html>
 <head>
@@ -13,6 +16,13 @@
 <div class="container">
   <h3>Home</h3>
 <div>
+	<c:if test="${not empty member}">
+		<h1>로그인 성공</h1>
+	</c:if>
+	
+	<c:if test="${ empty member}">
+		<h1>로그인 실패</h1>
+	</c:if>
 	<img alt="main image" src="./resources/images/index/naeun.jpg">
 </div>
 </div>

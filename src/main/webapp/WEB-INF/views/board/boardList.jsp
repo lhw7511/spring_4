@@ -17,7 +17,7 @@
 <c:import url="../template/header.jsp"></c:import>
 
 <div class="container">
-	<h1>board List</h1>
+	<h1>${board} List</h1>
 	
 	 <table  class="table table-striped">
     	<tr> 
@@ -54,7 +54,9 @@
     			<span class="c1" title="${pager.lastNum+1}">[다음]</span>
     		</c:if>
     		<div>
+    		<c:if test="${not empty member and board ne 'notice' or not empty member and member.id eq 'admin' and board eq 'notice'}">
     		  <a href="./${board}Write" class="btn btn-default">WRITE</a>
+    		 </c:if>
     		  </div>
     	</div>
    
