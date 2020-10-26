@@ -17,6 +17,7 @@
     <div class="form-group">
       <label for="id">ID:</label>
       <input type="text" class="form-control" id="id" placeholder="Enter id" name="id">
+      <div id="idResult"></div>
     </div>
     
     
@@ -65,6 +66,20 @@
 		 }
 	  });
 	
+	  $("#id").focusout(function(){
+		 $.post("./memberIdCheck",{id: $("#id").val()},function(data){
+			data=data.trim();
+			if(data==1){
+				  $("#idResult").text("사용가능한 아이디입니다");
+				  $("#idResult").css("color","blue");
+			  }else{
+				  $("#idResult").text("중복된 아이디입니다");
+				  $("#idResult").css("color","red");
+			  }
+			  
+		 });
+	  });
+	  
 	</script>
 </body>
 </html>

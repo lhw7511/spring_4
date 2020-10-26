@@ -19,4 +19,8 @@
 	<insert id="setMemberInsert" parameterType="MemberDTO">
 		insert into member values(member_seq.nextval,#{id},#{pw},#{name},#{email})
 	</insert>
+	
+	<select id="getIdCheck" parameterType="MemberDTO" resultType="MemberUserDTO">
+	  select * from member where id=#{id}
+	</select>
 </mapper>

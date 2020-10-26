@@ -123,11 +123,26 @@ public class MemberUserController {
 		String message="Insert 실패!";
 		if(result>0) {
 			message="Insert 성공!";
-			mv.addObject("msg", message);
-			mv.addObject("path","../");
-			mv.setViewName("common/result");
-			return mv;
+			
+		
 		}
+		mv.addObject("msg", message);
+		mv.addObject("path","../");
+		mv.setViewName("common/result");
 		return mv;
+	}
+	
+	@PostMapping("memberIdCheck")
+	public ModelAndView getIdCheck(MemberDTO memberDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		memberDTO=memberUserService.getIdCheck(memberDTO);
+		String message="0";
+		if(memberDTO==null) {
+			message="1";
+		}
+		 mv.addObject("msg", message);
+		 mv.setViewName("common/ajaxResult");
+		 return mv;
+		
 	}
 }

@@ -31,5 +31,7 @@ public class MemberUserService implements MemberService {
 	public int setMemberInsert(MemberDTO memberDTO) throws Exception {
 		return memberUserDAO.setMemberInsert(memberDTO);
 	}
-
+	public MemberDTO getIdCheck(MemberDTO memberDTO)throws Exception{
+		return memberUserDAO.getIdCheck(memberDTO);
+	}
 }
