@@ -44,23 +44,23 @@
 	</div>
 	<script type="text/javascript">
 	  $("#btn").click(function(){
-		 var t=	$("#id").length;
-		 var p=	$("#pw").length;
-		 var p2=$("#pw2").length;
-		 var n= $("#name").length;
-		 var e= $("#email").length;	 
+		 var t=	$("#id").val().length;
+		 var p=	$("#pw").val()
+		 var p2=$("#pw2").val()
+		 var n= $("#name").val().length;
+		 var e= $("#email").val().length;	 
+	   
 		 var check =false;
-		 if(t!=0&&p!=0&&n!=0&&e!=0&&p2!=0){
+		 if(t!=0&&p.length!=0&&n!=0&&e!=0&&p2.length!=0){
 			 check=true;
 		 }
 		 
-		 var a = $("#pw").val();
-		 var b=  $("#pw2").val();
-		 if(a==b&&check){
+		
+		 if(p==p2&&check){
 			 $("#frm").submit();
-		 }else if(a!=b&&check){
+		 }else if(p!=p2&&check){
 			 alert("비밀번호가 일치하는지 확인해주세요");
-		 }else if(!check){
+		 }else{
 			 alert("필수 항목을 입력해주세요");
 		 }
 	  });
