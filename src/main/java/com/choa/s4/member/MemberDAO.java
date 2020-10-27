@@ -9,4 +9,6 @@ public interface MemberDAO {
 	public int setMemberDelete(MemberDTO memberDTO) throws Exception;
 	
 	public int setMemberInsert(MemberDTO memberDTO) throws Exception;
+	
+	public MemberDTO getIdCheck(MemberDTO memberDTO)  throws Exception;
 }

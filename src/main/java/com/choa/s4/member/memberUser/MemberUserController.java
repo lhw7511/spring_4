@@ -136,9 +136,9 @@ public class MemberUserController {
 	public ModelAndView getIdCheck(MemberDTO memberDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		memberDTO=memberUserService.getIdCheck(memberDTO);
-		String message="0";
+		int message=0;
 		if(memberDTO==null) {
-			message="1";
+			message=1;
 		}
 		 mv.addObject("msg", message);
 		 mv.setViewName("common/ajaxResult");
