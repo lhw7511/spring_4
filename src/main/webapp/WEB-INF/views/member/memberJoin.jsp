@@ -13,7 +13,7 @@
 	
 	<div class="container">
 	<h3>Member Join Page</h3>
-	<form action="./memberJoin" method="post" id="frm">
+	<form action="./memberJoin" method="post" id="frm" enctype="multipart/form-data">
     <div class="form-group">
       <label for="id">ID:</label>
       <input type="text" class="form-control" id="id" placeholder="Enter id" name="id">
@@ -40,7 +40,13 @@
       <label for="email">EMAIL:</label>
       <input type="text" class="form-control " id="email" placeholder="Enter email" name="email">
     </div>
+    
      <div id="emailCheck" ></div>
+      <div class="form-group">
+      <label for="photo">Photo:</label>
+      <input type="file" class="form-control " id="photo" name="photo">
+    </div>
+     
         <button type="button" class="btn btn-default" id="btn">Submit</button>
   </form>
 	</div>

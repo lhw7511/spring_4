@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.choa.s4.member.MemberDTO;
@@ -117,15 +118,19 @@ public class MemberUserController {
 	}
 	
 	@PostMapping("memberJoin")
-	public ModelAndView setMemberJoin(MemberDTO memberDTO)throws Exception{
+	public ModelAndView setMemberJoin(MemberDTO memberDTO,MultipartFile photo)throws Exception{
+		System.out.println(photo.getOriginalFilename());
+		System.out.println(photo.getName());
+		System.out.println(photo.getSize());
+		System.out.println(photo.getContentType());
 		ModelAndView mv = new ModelAndView();
-		int result=memberUserService.setMemberInsert(memberDTO);
+		//int result=memberUserService.setMemberInsert(memberDTO);
 		String message="Insert 실패!";
-		if(result>0) {
-			message="Insert 성공!";
-			
-		
-		}
+//		if(result>0) {
+//			message="Insert 성공!";
+//			
+//		
+//		}
 		mv.addObject("msg", message);
 		mv.addObject("path","../");
 		mv.setViewName("common/result");
