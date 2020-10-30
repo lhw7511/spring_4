@@ -12,15 +12,29 @@
 	</insert>
 	
 	<select id="getOne" parameterType="NoticeDTO" resultMap="getOneResult">
-		select num as n ,title as t, writer, contents from notice where num = #{num}
+		select n.*,f.filename,f.oriname
+		from notice n left join noticefile f
+		on (n.num=f.num)
+		where n.num=#{num}
 	</select>
-<resultMap type="NoticeDTO" id="getOneResult">
-		<id column="n" property="num"/>
-		<result column="t" property="title"/>
+	
+	
+	<resultMap type="NoticeDTO" id="getOneResult">
+		<id column="num" property="num"/>
+		<result column="title" property="title"/>
 		<result column="writer" property="writer"/>
 		<result column="contents" property="contents"/>
+		<result column="regDate" property="regDate"/>
+		<result column="hit" property="hit"/>
 		
+		<collection property="boardFileDTOs" ofType="BoardFileDTO" javaType="java.util.List">
+			<id column="fileNum" property="fileNum"/>
+			<result column="fileName" property="fileName"/>
+			<result column="oriName" property="oriName"/>
+		
+		</collection>
 	</resultMap>
+	
 	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
 		select * from
 		(select rownum as R, N.* from 

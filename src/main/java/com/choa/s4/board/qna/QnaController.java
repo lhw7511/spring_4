@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.choa.s4.board.BoardDTO;
+import com.choa.s4.board.file.BoardFileDTO;
 import com.choa.s4.util.Pager;
 
 @Controller
@@ -22,6 +23,15 @@ public class QnaController {
 	@Autowired
 	private QnaService qnaService;
 	
+	@GetMapping("fileDown")
+	public ModelAndView fileDown(BoardFileDTO boardFileDTO) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("board", "qna");
+		mv.addObject("fileDTO", boardFileDTO);		
+		mv.setViewName("fileDown");
+		return mv;
+	}
 	@GetMapping("qnaList")
 	public ModelAndView getList(Pager pager) throws Exception{
 		List<BoardDTO> boardDTOs = qnaService.getList(pager);
@@ -62,15 +72,11 @@ public class QnaController {
 	public ModelAndView getOne(BoardDTO boardDTO) throws Exception{
 		 BoardDTO select = qnaService.getOne(boardDTO);
 		 ModelAndView mv = new ModelAndView();
-		 if(select!=null) {
+	
 			 mv.addObject("select", select);
 			 mv.addObject("board", "qna");
 			 mv.setViewName("board/boardSelect");
-		 }else {
-			 mv.addObject("msg", "데이터가 없습니다");
-			 mv.addObject("path", "./qnaList");
-			 mv.setViewName("common/result");
-		 }
+		
 		
 		 return mv;
 	}

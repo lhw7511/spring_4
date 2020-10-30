@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Insert title here</title>o
 <c:import url="../template/bootStrap.jsp"></c:import>
 </head>
 <body>
@@ -19,6 +19,16 @@
   <h3 id="contents">CONTENTS : ${select.contents}</h3>
   <h3>REDATE : ${select.regDate}</h3>
   <h3>HIT : ${select.hit}</h3> 
+  
+  
+  <c:forEach items="${select.boardFileDTOs}" var="dto">
+  	<div>oriName: ${dto.oriName}</div>
+  	<div>
+  	
+  	<a href="./fileDown?fileName=${dto.fileName}&oriName=${dto.oriName}">${dto.oriName}</a>
+  	</div>
+  </c:forEach>
+
   <input type="button" value="DELETE" title="${select.num}" class="btn btn-warning" id="del">  
   <input type="button" value="UPDATE" title="${select.num}" class="btn btn-warning" id="UP">
   <c:if test="${board ne 'notice'}">

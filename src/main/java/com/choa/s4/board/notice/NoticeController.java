@@ -64,16 +64,13 @@ public class NoticeController {
 	@GetMapping("noticeSelect")
 	public ModelAndView getOne(BoardDTO boardDTO) throws Exception{
 		 BoardDTO select = noticeService.getOne(boardDTO);
+		
 		 ModelAndView mv = new ModelAndView();
-		 if(select!=null) {
+		
 			 mv.addObject("select", select);
 			 mv.addObject("board", "notice");
 			 mv.setViewName("board/boardSelect");
-		 }else {
-			 mv.addObject("msg", "데이터가 없습니다");
-			 mv.addObject("path", "./noticeList");
-			 mv.setViewName("common/result");
-		 }
+		 
 		
 		 return mv;
 	}
