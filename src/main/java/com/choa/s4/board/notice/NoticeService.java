@@ -1,24 +1,53 @@
 package com.choa.s4.board.notice;
 
+import java.io.File;
+import java.util.Calendar;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.choa.s4.board.BoardDTO;
 import com.choa.s4.board.BoardService;
+import com.choa.s4.board.file.BoardFileDTO;
+import com.choa.s4.util.FileSaver;
 import com.choa.s4.util.Pager;
 
 @Service
 public class NoticeService implements BoardService{
 	@Autowired
 	private NoticeDAO noticeDAO;
+	@Autowired
+	private FileSaver fileSaver;
 	@Override
-	public int setInsert(BoardDTO boardDTO) throws Exception{
+	public int setInsert(BoardDTO boardDTO, MultipartFile[] files, HttpSession httpSession) throws Exception {
+		String path = httpSession.getServletContext().getRealPath("/resources/upload/notice");
+		File dest = new File(path);
+		String name="";
 		
-		return  noticeDAO.setInsert(boardDTO);
+		
+		int result= noticeDAO.setInsert(boardDTO);
+		if(result>0) {
+			for(int i=0;i<files.length;i++) {
+				if(files[i].getSize()!=0) {
+					name=fileSaver.save(files[i], dest);
+					BoardFileDTO boardFileDTO = new BoardFileDTO();
+					
+					boardFileDTO.setNum(boardDTO.getNum());
+					boardFileDTO.setFileName(name);
+					boardFileDTO.setOriName(files[i].getOriginalFilename());
+					result=noticeDAO.setInsertFile(boardFileDTO);
+				}
+			}
+		}
+		
+		return result;
 	}
-
+	
 	@Override
 	public int setDelete(BoardDTO boardDTO)  throws Exception{
 		return noticeDAO.setDelete(boardDTO);
@@ -41,5 +70,7 @@ public class NoticeService implements BoardService{
 	public BoardDTO getOne(BoardDTO boardDTO) throws Exception{
 		return noticeDAO.getOne(boardDTO);
 	}
+
+	
 
 }

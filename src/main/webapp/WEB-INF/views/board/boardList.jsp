@@ -58,6 +58,7 @@
     		  <a href="./${board}Write" class="btn btn-default">WRITE</a>
     		 </c:if>
     		  </div>
+    		 
     	</div>
    
    

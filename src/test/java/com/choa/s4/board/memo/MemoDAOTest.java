@@ -29,7 +29,7 @@ public class MemoDAOTest extends MyTestCase{
 //		}
 //	}
 	
-	@Test
+	//@Test
 	public void getList() throws Exception {
 		Pager pager = new Pager();
 		pager.makeRow();

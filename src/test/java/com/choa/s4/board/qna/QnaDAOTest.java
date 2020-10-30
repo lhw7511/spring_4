@@ -25,7 +25,7 @@ public class QnaDAOTest extends MyTestCase{
 //		int result=qnaDAO.setInsert(boardDTO);
 //		assertEquals(1, result);
 //	}
-	@Test
+	//@Test
 	public void getListTest() throws Exception{
 		Pager pager = new Pager();
 		pager.makeRow();

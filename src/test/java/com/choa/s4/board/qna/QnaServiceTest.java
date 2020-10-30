@@ -15,7 +15,7 @@ public class QnaServiceTest extends MyTestCase{
 	@Autowired
 	private QnaService qnaService;
 
-	@Test
+	//@Test
 	public void getListTest() throws Exception{
 		Pager pager = new Pager();
 		List<BoardDTO> ar = qnaService.getList(pager);

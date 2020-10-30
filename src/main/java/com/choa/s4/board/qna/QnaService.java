@@ -2,9 +2,12 @@ package com.choa.s4.board.qna;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.choa.s4.board.BoardDTO;
 import com.choa.s4.board.BoardService;
@@ -16,7 +19,7 @@ public class QnaService implements BoardService{
 	@Autowired
 	private QnaDAO qnaDAO;
 	@Override
-	public int setInsert(BoardDTO boardDTO) throws Exception {
+	public int setInsert(BoardDTO boardDTO,MultipartFile []files, HttpSession httpSession) throws Exception {
 		return qnaDAO.setInsert(boardDTO);
 	}
 

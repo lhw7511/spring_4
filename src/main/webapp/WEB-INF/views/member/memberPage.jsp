@@ -25,7 +25,9 @@
 				<th>Email</th> <td>${member.email}</td>
 			</tr>
 		</table>
-		
+		<div>
+			<img alt="" src="../resources/upload/member/${member.memberFileDTO.fileName}">
+		</div>
 		<a href="./memberUpdate" class="btn btn-primary">UPDATE</a>
 		<a href="./memberDelete" class="btn btn-danger">DELETE</a>
 	</div>

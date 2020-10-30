@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.choa.s4.board.BoardDAO;
 import com.choa.s4.board.BoardDTO;
+import com.choa.s4.board.file.BoardFileDTO;
 import com.choa.s4.util.Pager;
 
 @Repository
@@ -49,5 +50,11 @@ public class NoticeDAO implements BoardDAO{
 	public long getCount(Pager pager) throws Exception {
 		 return sqlSession.selectOne(NAMESPACE+"getCount", pager);
 	}
-
+	public int setInsertFile(BoardFileDTO boardFileDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setInsertFile", boardFileDTO);
+	}
+	
+	public long getNum() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getNum");
+	}
 }

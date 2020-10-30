@@ -2,11 +2,14 @@ package com.choa.s4.board.qna;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.choa.s4.board.BoardDTO;
@@ -41,8 +44,8 @@ public class QnaController {
 	}
 	
 	@PostMapping("qnaWrite")
-	public ModelAndView setInsert(BoardDTO boardDTO)throws Exception{
-		int result=qnaService.setInsert(boardDTO);
+	public ModelAndView setInsert(BoardDTO boardDTO,MultipartFile[] files, HttpSession httpSession)throws Exception{
+		int result=qnaService.setInsert(boardDTO,files,httpSession);
 		String message="Insert 실패";
 		if(result>0) {
 			message="Insert 성공";

@@ -29,8 +29,9 @@ public class MemberUserController {
 	@PostMapping("memberLogin")
 	public ModelAndView getMemberLogin(MemberDTO memberDTO,HttpSession httpSession) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		memberDTO=memberUserService.getMemberLogin(memberDTO);
 		
+		memberDTO=memberUserService.getMemberLogin(memberDTO);
+	
 		if(memberDTO!=null) {
 			httpSession.setAttribute("member", memberDTO);
 			mv.setViewName("redirect:../");
@@ -118,19 +119,16 @@ public class MemberUserController {
 	}
 	
 	@PostMapping("memberJoin")
-	public ModelAndView setMemberJoin(MemberDTO memberDTO,MultipartFile photo)throws Exception{
-		System.out.println(photo.getOriginalFilename());
-		System.out.println(photo.getName());
-		System.out.println(photo.getSize());
-		System.out.println(photo.getContentType());
+	public ModelAndView setMemberJoin(MemberDTO memberDTO,MultipartFile photo,HttpSession httpSession)throws Exception{
+		
 		ModelAndView mv = new ModelAndView();
-		//int result=memberUserService.setMemberInsert(memberDTO);
+		int result=memberUserService.setMemberInsert(memberDTO,photo,httpSession);
 		String message="Insert 실패!";
-//		if(result>0) {
-//			message="Insert 성공!";
-//			
-//		
-//		}
+		if(result>0) {
+			message="Insert 성공!";
+			
+		
+		}
 		mv.addObject("msg", message);
 		mv.addObject("path","../");
 		mv.setViewName("common/result");
