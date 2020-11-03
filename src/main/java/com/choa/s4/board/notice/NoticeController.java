@@ -23,6 +23,31 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
+	@PostMapping("summernoteDelete")
+	public ModelAndView summernoteDelete(String file,HttpSession httpSession)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		boolean result=noticeService.summernoteDelete(file, httpSession);
+		mv.addObject("msg", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+	
+	@PostMapping("summernote")
+	public ModelAndView summernote(MultipartFile file,HttpSession httpSession) throws Exception{
+		//System.out.println(file.getOriginalFilename());
+	
+		String name =noticeService.summernote(file, httpSession);
+//		String path =httpSession.getServletContext().getContextPath()+File.separator;
+//		path= path+"resources"+File.separator+"upload"+File.separator;
+//		path=path+"qna"+File.separator+name;
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("msg", name);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+	
+	
 	//@RequestMapping(value = "noticeList",method = RequestMethod.GET)
 	@GetMapping("noticeList")
 	public ModelAndView getList(Pager pager) throws Exception{

@@ -9,11 +9,13 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.view.AbstractView;
 
 import com.choa.s4.board.file.BoardFileDTO;
 
+@Component
 public class FileDown extends AbstractView{
 
 	@Override
@@ -38,7 +40,7 @@ public class FileDown extends AbstractView{
 		//다운로드시 파일 이름 인코딩
 		String downName =URLEncoder.encode(boardFileDTO.getOriName(), "UTF-8");
 		//header설정
-		response.setHeader("Content-Dispostition", "attachment:fileName=\""+downName+"\"");
+		response.setHeader("Content-Disposition", "attachment;fileName=\""+downName+"\"");
 		response.setHeader("Content-Transfer-Encoding", "binary");
 		
 		//Client로 전송

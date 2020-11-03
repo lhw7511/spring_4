@@ -7,7 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/bootStrap.jsp"></c:import>
-
+<!-- include summernote css/js -->
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <style type="text/css">
  d1{
  	display: none;
@@ -47,5 +52,13 @@
   </form>
 </div>
 <script type="text/javascript" src="../resources/js/boardWrite.js"></script>
+
+<script type="text/javascript">
+$('#contents').summernote({
+	  height: 300,                 // set editor height		          
+	  focus: true ,
+	
+});
+</script>
 </body>
 </html>
