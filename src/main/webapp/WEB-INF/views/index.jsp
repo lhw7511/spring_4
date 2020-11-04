@@ -24,6 +24,8 @@
 		<h1>로그인 실패</h1>
 	</c:if>
 	<img alt="main image" src="./resources/images/index/naeun.jpg">
+	
+	<a href="./cookie/makeCookie">MakeCookie</a>
 </div>
 </div>
 </body>

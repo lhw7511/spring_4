@@ -42,7 +42,7 @@ public class EncodingFilter implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		encode=	fConfig.getInitParameter("encode");
+		//encode=	fConfig.getInitParameter("encode");
 	}
 
 }

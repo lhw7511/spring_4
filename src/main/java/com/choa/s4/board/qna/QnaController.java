@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +25,16 @@ public class QnaController {
 	@Autowired
 	private QnaService qnaService;
 	
+	@ExceptionHandler(Exception.class)
+	public ModelAndView ex1() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("error/error_back");
+		return mv;
+	}
 	
 	@PostMapping("summernoteDelete")
 	public ModelAndView summernoteDelete(String file,HttpSession httpSession)throws Exception{
+		
 		ModelAndView mv = new ModelAndView();
 		boolean result=qnaService.summernoteDelete(file, httpSession);
 		mv.addObject("msg", result);
@@ -62,7 +70,11 @@ public class QnaController {
 	@GetMapping("qnaList")
 	public ModelAndView getList(Pager pager) throws Exception{
 		List<BoardDTO> boardDTOs = qnaService.getList(pager);
-		
+//		boardDTOs=null;
+//		BoardDTO boardDTO =boardDTOs.get(0);
+//	
+//		QnaDTO qnaDTO = (QnaDTO)boardDTO;
+//		System.out.println(qnaDTO.getDepth());
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", boardDTOs);
 		mv.addObject("pager", pager);

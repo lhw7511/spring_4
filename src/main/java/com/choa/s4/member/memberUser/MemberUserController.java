@@ -2,6 +2,8 @@ package com.choa.s4.member.memberUser;
 
 import java.nio.channels.SeekableByteChannel;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +29,23 @@ public class MemberUserController {
 	}
 	//로그인해서 세션세팅
 	@PostMapping("memberLogin")
-	public ModelAndView getMemberLogin(MemberDTO memberDTO,HttpSession httpSession) throws Exception {
+	public ModelAndView getMemberLogin(MemberDTO memberDTO,HttpSession httpSession,String remember,HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		memberDTO=memberUserService.getMemberLogin(memberDTO);
-	
+		
 		if(memberDTO!=null) {
+			if(remember!=null) {
+				Cookie cookie = new Cookie("remember", memberDTO.getId());
+				//cookie.setDomain("/cookie/showCookie");
+				cookie.setMaxAge(60);
+				response.addCookie(cookie);
+			}else {
+				Cookie cookie = new Cookie("remember", "");
+			
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
+			}
 			httpSession.setAttribute("member", memberDTO);
 			mv.setViewName("redirect:../");
 		}else {
