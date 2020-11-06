@@ -8,7 +8,7 @@
 	
 
 	<insert id="setInsertFile" parameterType="BoardFileDTO">
-		insert into noticefile values(notice_seq.nextval,#{num},#{fileName},#{oriName})
+		insert into noticefile values(271,#{num},#{fileName},#{oriName})
 	</insert>
 	
 	<select id="getOne" parameterType="NoticeDTO" resultMap="getOneResult">

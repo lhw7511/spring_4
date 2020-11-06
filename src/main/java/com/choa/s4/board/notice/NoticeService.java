@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,6 +19,7 @@ import com.choa.s4.util.FileSaver;
 import com.choa.s4.util.Pager;
 
 @Service
+@Transactional
 public class NoticeService implements BoardService{
 	@Autowired
 	private NoticeDAO noticeDAO;
@@ -44,7 +46,8 @@ public class NoticeService implements BoardService{
 		return result;
 	}
 	
-	@Override
+	
+	@Override	
 	public int setInsert(BoardDTO boardDTO, MultipartFile[] files, HttpSession httpSession) throws Exception {
 		String path = httpSession.getServletContext().getRealPath("/resources/upload/notice");
 		File dest = new File(path);
